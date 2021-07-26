@@ -2,6 +2,10 @@
 
 const input = require("readline-sync");
 
+let scrabbleWord = "";
+
+
+
 const oldPointStructure = {
   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
   2: ['D', 'G'],
@@ -34,15 +38,52 @@ function oldScrabbleScorer(word) {
 
 function initialPrompt() {
    console.log("Let's play some scrabble! Enter a word:");
+   scrabbleWord = input.question("enter word to score: ");
+
 };
 
-let simpleScore;
+function simpleScore(word) {
+ return word.length 
+};
 
-let vowelBonusScore;
+//let vowelBonusScore;//
+function vowelBonusScore(word) {
+let score = 0;
+let vowel = "aeiou";
+for (let i = 0; i < word.length; i++) {
+  if (vowel.includes(word[i].toLowerCase())){
+    score += 3;
+  } else {
+    score ++;
+  }
+}
+return score;
+};
 
-let scrabbleScore;
+//let scrabbleScore;//
+function scrabbleScore(word) {
+console.log "Hello World";
 
-const scoringAlgorithms = [];
+}
+
+const scoringAlgorithms = [
+{
+  name:'Simple Score',
+  description:'Each letter is worth 1 point',
+  scoringFunction: simpleScore
+},
+{
+  name:'Bonus Vowels',
+  description:'Vowels are 3 pts, consonants are 1 pt.',
+  scoringFunction: vowelBonusScore
+},
+{
+  name:'Scrabble',
+  description:'The traditional scoring algorithm.',
+  scoringFunction: scrabbleScore
+}
+
+];
 
 function scorerPrompt() {}
 
