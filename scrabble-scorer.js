@@ -62,7 +62,7 @@ return score;
 
 //let scrabbleScore;//
 function scrabbleScore(word) {
-console.log "Hello World";
+//console.log "Hello World";//
 
 }
 
@@ -85,7 +85,10 @@ const scoringAlgorithms = [
 
 ];
 
-function scorerPrompt() {}
+function scorerPrompt() {
+
+  let 
+}
 
 function transform() {};
 
