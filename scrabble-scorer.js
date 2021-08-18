@@ -65,7 +65,7 @@ function scrabbleScore(word) {
 word = word.toLowerCase();
 let score = 0;
 for (let i = 0; i < word.length; i++) {
-  score += newPointStruture[word[i]];
+  score += newPointStructure[word[i]];
 }
 return score;
 }
@@ -90,32 +90,13 @@ const scoringAlgorithms = [
 ];
 
 function scorerPrompt() {
-let scoringMethod = input.question("Which scoring algorithm would you like to use?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ");
+let scorer = input.question(`Which scoring algorithm would you like to use? \n
+0 - Simple: One point per character
+1 - Vowel Bonus: Vowels are wort 3 points
+2 - Scrabble: Uses scrabble point system
+Enter 0,1,2: `);
 
-  console.log("The entered scoring method is " + scoringMethod);
-
-  scoringMethod = String(scoringMethod);
-
-  let validScoringMethod = false;
-
-  while(validScoringMethod === false)
-  {
-   if ((scoringMethod === "0") 
-     (scoringMethod === "1") 
-     (scoringMethod === "2"))
-    {
-      validScoringMethod = true;
-    }
-    else
-    {
-      console.log("Invalid option entered!\n")
-    scoringMethod = input.question("Which scoring algorithm would you like to use?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ");
-    console.log("The entered scoring method is " + scoringMethod);
-
-    }
-  }
-
-  return scoringAlgorithms[scoringMethod];
+ console.log(`Score for ${scrabbleWord}: ${scoringAlgorithms[scorer].scoringFunction(scrabbleWord, newPointStructure)}`)
 
 }
 
