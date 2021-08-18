@@ -39,7 +39,7 @@ function oldScrabbleScorer(word) {
 function initialPrompt() {
    console.log("Let's play some scrabble! Enter a word:");
    scrabbleWord = input.question("enter word to score: ");
-
+  return scrabbleWord
 };
 
 function simpleScore(word) {
@@ -62,8 +62,12 @@ return score;
 
 //let scrabbleScore;//
 function scrabbleScore(word) {
-//console.log "Hello World";//
-
+word = word.toLowerCase();
+let score = 0;
+for (let i = 0; i < word.length; i++) {
+  score += newPointStruture[word[i]];
+}
+return score;
 }
 
 const scoringAlgorithms = [
@@ -86,17 +90,51 @@ const scoringAlgorithms = [
 ];
 
 function scorerPrompt() {
+let scoringMethod = input.question("Which scoring algorithm would you like to use?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ");
 
-  let 
+  console.log("The entered scoring method is " + scoringMethod);
+
+  scoringMethod = String(scoringMethod);
+
+  let validScoringMethod = false;
+
+  while(validScoringMethod === false)
+  {
+   if ((scoringMethod === "0") 
+     (scoringMethod === "1") 
+     (scoringMethod === "2"))
+    {
+      validScoringMethod = true;
+    }
+    else
+    {
+      console.log("Invalid option entered!\n")
+    scoringMethod = input.question("Which scoring algorithm would you like to use?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ");
+    console.log("The entered scoring method is " + scoringMethod);
+
+    }
+  }
+
+  return scoringAlgorithms[scoringMethod];
+
 }
 
-function transform() {};
+function transform(obj) {
+  let letterPoints = {};
+  for(key in obj) {
+    let eachLetter = obj[key];
+    for (let i = 0; eachLetter.length; i++) {
+letterPoints[eachLetter[i].toLowerCase()] = Number(key);
+    }
+  }
+  return letterPoints;
+};
 
-let newPointStructure;
+let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    initialPrompt();
-   
+   scorerPrompt();
 }
 
 // Don't write any code below this line //
