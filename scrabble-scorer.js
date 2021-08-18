@@ -120,14 +120,17 @@ let scoringMethod = input.question("Which scoring algorithm would you like to us
 }
 
 function transform(obj) {
-  let letterPoints = {};
-  for(key in obj) {
-    let eachLetter = obj[key];
-    for (let i = 0; eachLetter.length; i++) {
-letterPoints[eachLetter[i].toLowerCase()] = Number(key);
-    }
-  }
-  return letterPoints;
+  	 let newPointStructure = {};
+ for (let key in obj) { 
+ let letters = obj[key]
+ // console.log(key);
+ // console.log(obj[key]);
+ for (let i = 0; i < letters.length; i++) {
+ newPointStructure[letters[i].toLowerCase()] = Number(key);
+ }
+ }
+
+return newPointStructure;
 };
 
 let newPointStructure = transform(oldPointStructure);
